@@ -1,0 +1,4 @@
+<%Actividad.find(id).link.split(';').each_with_index do |l,i|%>
+<a target="_blank" href="<%=l%>"><button   type="button" class="btn btn-info btn-lg btn-block">Actividad <%=i+1%></button></a>
+<hr>
+<%end%>

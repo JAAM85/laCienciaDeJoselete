@@ -1,0 +1,74 @@
+<%if user_signed_in? && current_user.role == "admin"%>
+	<ul class="nav">
+		<li class="nav-item">			
+			<a class="nav-link active" href="<%=trabajocasas_new_path(5)%>">
+				<i class="fas fa-plus"></i> Crear nueva tarea para casa
+			</a>
+		</li>		
+	</ul>
+<%end%>
+
+<h1 class="display-4"></h1>
+<section class="jumbotron text-center">
+        <div class="container">
+        	<h1 class="jumbotron-heading display-4">
+        	<img class="" src="/images/ClassDojo Accessories/sticky-notes.png" alt="Generic placeholder image" width="140" height="140">
+          		Trabajo para casa # <%= @curso.name.upcase%>
+          </h1>
+        
+        </div>
+      </section>  
+
+	  
+	  <div class="row" >
+	  	  
+	  	<div class="col-lg-2">
+			<button onclick="reload_trabajos('<%=(Date.today).end_of_week - 6.days %>');" type="button" class="btn btn-outline-primary">
+				Lunes
+				<%=(Date.today.end_of_week - 6.days).strftime("%d/%m") %>
+			</button>
+	  </div>	  
+	<div class="col-lg-2">
+
+	  <button onclick="reload_trabajos('<%=(Date.today).end_of_week - 5.days %>');" type="button" class="btn btn-outline-primary">
+	  Martes
+		<%=(Date.today.end_of_week - 5.days).strftime("%d/%m") %>
+	  </button>
+	  </div>	  
+	<div class="col-lg-2">
+
+	  <button onclick="reload_trabajos('<%=(Date.today).end_of_week - 4.days %>');" type="button" class="btn btn-outline-primary">
+	  	Miércoles
+		<%=(Date.today.end_of_week - 4.days).strftime("%d/%m") %>
+	  </button>
+	  </div>	  
+	<div class="col-lg-2">
+
+	  <button onclick="reload_trabajos('<%=(Date.today).end_of_week - 3.days %>');" type="button" class="btn btn-outline-primary">
+	  	Jueves
+		<%=(Date.today.end_of_week - 3.days).strftime("%d/%m") %>
+	  </button>
+	  </div>	  
+	<div class="col-lg-2">
+
+	  <button onclick="reload_trabajos('<%=(Date.today).end_of_week - 2.days %>');" type="button" class="btn btn-outline-primary">
+	  	Viernes
+		<%=(Date.today.end_of_week - 2.days).strftime("%d/%m") %>
+	  </button>
+	  </div>	
+	  
+	<div class="col-lg-2">	
+	  <button onclick="" type="button" class="btn btn-outline-success">
+	  	Todas
+	  </button>
+	  </div>
+	  
+	  </div>  
+
+<div id="tablaTrabajos">	  
+	<%=render :partial => "trabajocasas/partials/tablaTrabajo", locals: {trabajos: @trabajos, date: Date.today}%>
+</div>
+
+
+
+

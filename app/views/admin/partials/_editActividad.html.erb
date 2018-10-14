@@ -1,0 +1,78 @@
+<%= form_for @actividad do |f| %>
+   <div class="form-group">
+    <label for="">Título</label>
+    <%= f.text_field :titulo, class: "form-control" %>
+  </div>
+
+    <div class="form-group">
+    <label for="">Imagen</label>
+    <%= f.text_field :imagen, class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <label for="">Temas</label>
+    <%= f.select :tema, options_for_select(@temas.map{ |u| [u.titulo, u.id] }), {}, { :class => 'form-control' } %>   
+  </div>
+
+  
+  <div class="form-group">
+    <label for="">Link</label>
+    <%= f.text_field :link, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <label for="">Descripcion</label>
+    <%= f.text_area :descripcion, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <label for="">Contenido</label>
+    <%= f.text_area :contenido, class: "form-control" %>
+  </div>
+    
+    <%= f.submit "Guardar", :class => "btn btn-primary mb-2"%>
+  <% end %>
+
+  
+ <script>
+ tinymce.init({
+  selector: 'textarea',
+  height: 200,
+  theme: 'modern',
+  plugins: 'print preview fullpage autolink directionality fullscreen image link media template table hr pagebreak nonbreaking insertdatetime lists textcolor wordcount imagetools contextmenu colorpicker textpattern help',
+  toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
+  image_advtab: true,
+  templates: [
+    { title: 'Test template 1', content: 'Test 1' },
+    { title: 'Test template 2', content: 'Test 2' }
+  ],
+  content_css: [
+    '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+    '//www.tinymce.com/css/codepen.min.css'
+  ],
+  images_upload_handler: function (blobInfo, success, failure) {
+    var xhr, formData;
+    xhr = new XMLHttpRequest();
+    xhr.withCredentials = false;
+    xhr.open('POST', '/upload_image');
+    xhr.onload = function() {
+      var json;
+
+      if (xhr.status != 200) {
+        failure('HTTP Error: ' + xhr.status);
+        return;
+      }
+      json = JSON.parse(xhr.responseText);
+
+      if (!json || typeof json.location != 'string') {
+        failure('Invalid JSON: ' + xhr.responseText);
+        return;
+      }
+      success(json.location);
+    };
+    formData = new FormData();
+    formData.append('file', blobInfo.blob(), fileName(blobInfo));
+    xhr.send(formData);
+  }
+ });  
+</script>

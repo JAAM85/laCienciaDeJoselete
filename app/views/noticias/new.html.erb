@@ -1,0 +1,29 @@
+
+<%= form_for @noticias, url: noticias_path do |f| %>
+  <div class="form-group">
+    <label for="">Título</label>
+    <%= f.text_field :titulo, class: "form-control" %>
+  </div>
+
+    <div class="form-group">
+    <label for="">Resumen</label>
+    <%= f.text_field :resumen, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <label for="">Noticia</label>
+    <%= f.text_area :contenido, rows: 5, cols: 25, :class => "tinymce"  %>
+  </div>
+
+  <div class="form-group">
+    <label for="">Imagen</label>
+    <%= f.text_field :imagen, class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <label for="">tags</label>
+    <%= f.text_field :tags, class: "form-control" %>
+  </div>
+    
+    <%= f.submit "Añadir noticia", :class => "btn btn-primary mb-2"%>
+  <% end %>

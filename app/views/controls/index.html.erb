@@ -1,0 +1,55 @@
+<section class="jumbotron text-center">
+        <div class="container">
+        	<h1 class="jumbotron-heading display-1">
+        	<img class="" src="/images/Monster artwork/Teacher-monster-male.png" alt="Generic placeholder image" width="140" height="140">
+            Noticias
+          </h1>
+          <p class="lead text-muted">
+            Encuentra aquí todas las noticias relacionadas con la web.
+		      </p>
+      </div>
+</section>
+
+  <div class="container marketing">
+	  <%Noticias.all.each_with_index do |a, index|%>   
+        
+        <!-- START THE FEATURETTES -->
+        <%if index.even?%>
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading"><%=a.titulo%></h2>
+            <p class="lead"><%=a.resumen%></p>
+
+            <a href="<%=noticia_path(a.id)%>" class="btn btn-link ">Ver noticia</a>   
+          </div>
+
+          <div class="col-md-5">
+            <img class="featurette-image img-fluid mx-auto" src="/images/noticias/<%=a.imagen%>" alt="Generic placeholder image">
+          </div>
+        </div>  
+
+        <%else%>
+                <hr class="featurette-divider">
+
+        <div class="row featurette">
+          
+          <div class="col-md-5">
+            <img class="featurette-image img-fluid mx-auto" src="/images/noticias/<%=a.imagen%>" alt="Generic placeholder image">
+          </div>
+
+          <div class="col-md-7">
+            <h2 class="featurette-heading"><%=a.titulo%></h2>
+            <p class="lead"><%=a.resumen%></p>
+          <a href="<%=noticia_path(a.id)%>" class="btn btn-link ">Ver noticia</a>  
+          </div>
+        </div>     
+          
+
+        <%end%>       
+
+
+
+  <%end%>
+ </div><!-- /.container -->

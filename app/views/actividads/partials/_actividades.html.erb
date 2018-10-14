@@ -1,0 +1,26 @@
+<div class="card-deck" style="padding-bottom:50px">
+    <%@actividades.each_with_index do |t, index|%>
+      <div class="card">
+        <div class="" style="height:200px;background-image:url('/images/actividades/<%=t.imagen%>');background-size:contain" ></div>
+        <div class="card-body">
+          <h5 class="card-title"><%=t.titulo%></h5>
+          <p class="card-text"><%=(strip_tags  t.descripcion)[0..100]%> ...</p>  
+        </div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-id="<%=t.id%>" data-target="#exampleModalLong">
+                Ver actividades
+              </button>          
+              <a class="btn btn-outline-info btn-sm" href="<%=actividad_path(t.id)%>">Saber más</a>
+            </div>
+          </div>     
+        </div>
+      </div>
+      
+      <%if (index+1)%3 == 0%>
+        </div>
+        <div class="card-deck" style="padding-bottom:50px">
+      <%end%>
+    <%end%>
+    </div>

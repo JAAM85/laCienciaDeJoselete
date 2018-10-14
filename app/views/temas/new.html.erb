@@ -1,0 +1,24 @@
+<%= form_for @tema do |f| %>
+  <div class="form-group">
+    <label for="">Título</label>
+    <%= f.text_field :titulo, class: "form-control" %>
+  </div>
+
+    <div class="form-group">
+    <label for="">Imagen</label>
+    <%= f.text_field :imagen, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <label for="">Descripcion</label>
+    <%= f.text_area :descripcion, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <label for="">Asignatura</label>
+    <%= f.select :asignatura, options_for_select(@asignaturas.map{ |u| [u.name, u.id] }), {}, { :class => 'form-control' } %>   
+  </div>
+
+    
+    <%= f.submit "Añadir Actividad", :class => "btn btn-primary mb-2"%>
+  <% end %>

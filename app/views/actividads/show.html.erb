@@ -1,0 +1,15 @@
+<% content_for :title do %><%=@actividad.titulo%><% end %>
+
+
+  <img class="rounded mx-auto d-block" src="/images/actividades/<%=@actividad.imagen%>" />
+    
+  <div style="" class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center text-dark">
+    <h1 class="display-4 "><%=@actividad.titulo%></h1>
+    <p class="lead"><%=sanitize @actividad.descripcion%></p>
+  </div>  
+
+  <p class="lead text-justify">
+    <%=sanitize @actividad.contenido, tags: ['h3', 'h4', 'h5', 'h6', 'blockquote', 'a', 'ul', 'ol',
+    'nl', 'li', 'b', 'i', 'strong', 'em', 'strike', 'code', 'hr', 'br', 'div', 'p',
+    'table', 'thead', 'caption', 'tbody', 'tr', 'th', 'td', 'pre', 'span'], attributes: %w(style) %>
+  </p>

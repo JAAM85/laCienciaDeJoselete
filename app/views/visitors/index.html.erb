@@ -1,0 +1,93 @@
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        
+        <div class="carousel-inner">
+        	<div class="carousel-item active">
+            <img class="first-slide" src="/images/slide1.jpg" alt="First slide">
+            <div class="container">
+              <div class="carousel-caption text-left">
+                <h1><%=Curso.all.first.name.upcase%></h1>
+                <p>Encuentra todas las actividades, deberes y ejercicios de ejemplo de <%=Curso.all.first.name%>.</p>
+                <p><a class="btn btn-lg btn-primary" href="/cursos/1" role="button">Ir al primer curso</a></p>
+              </div>
+            </div>
+          </div>
+    	<%Curso.all.offset(1).each do |c|%>
+          <div class="carousel-item">
+            <img class="first-slide" src="/images/<%=c.image%>" alt="First slide">
+            <div class="container">
+              <div class="carousel-caption text-left">
+                <h1><%=c.name.upcase%></h1>
+                <p>Encuentra todas las actividades, deberes y ejercicios de ejemplo de <%=Curso.all.first.name%>.</p>
+                <p><a class="btn btn-lg btn-primary" href="/cursos/1" role="button">Ir al primer curso</a></p>
+              </div>
+            </div>
+          </div>
+         <%end%>
+        </div>
+        
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
+
+      <!-- Marketing messaging and featurettes
+      ================================================== -->
+      <!-- Wrap the rest of the page in another container to center all the content. -->
+
+      <div class="container marketing">
+        
+        <!-- START THE FEATURETTES -->
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">Ten a mano los deberes de clase.</h2>
+            <p class="lead">Podrás encontrar los deberes de cada semana en un momento. Cada día se publicarán (o se intentará publicar) los deberes que se han mandado ese dia.</p>
+          </div>
+          <div class="col-md-5">
+            <img class="featurette-image img-fluid mx-auto" src="/images/notebook.jpeg" alt="Generic placeholder image">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading">¡Bien! ¡Un montón de actividades!</h2>
+            <p class="lead">A lo largo del año se iran añadiendo actividades que pueden realizar como complemento al aprendizaje. No tienes más que buscar en Actividades de cada curso para encontarlas.</p>
+          </div>
+          <div class="col-md-5 order-md-1">
+            <img class="featurette-image img-fluid mx-auto" src="/images/activities.jpeg" alt="Generic placeholder image">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">App usada en clase. <span class="text-muted">ClasDojo.</span></h2>
+            <p class="lead">Descárgate la <a href="https://www.classdojo.com/" target="_blank" class="btn-link">APP ClasDojo</a> en tu móvil para ver la evolución de tu hijo asi como alguna actividad complementaria.</p>
+          </div>
+          <div class="col-md-5">
+            <img class="featurette-image img-fluid mx-auto" src="/images/ClassDojo Accessories/dojo-clipart-1.png" alt="Generic placeholder image">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- /END THE FEATURETTES -->
+
+      </div><!-- /.container -->
+

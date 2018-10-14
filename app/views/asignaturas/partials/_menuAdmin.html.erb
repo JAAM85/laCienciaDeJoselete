@@ -1,0 +1,10 @@
+
+<%if user_signed_in? && current_user.role == "admin"%>
+	<ul class="nav">	
+    <li class="nav-item">			
+			<a class="nav-link active" href="<%=new_tema_path%>">
+				<i class="fas fa-plus"></i> Crear nuevo tema
+			</a>
+		</li>		
+	</ul>
+<%end%>

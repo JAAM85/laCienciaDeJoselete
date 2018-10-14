@@ -1,0 +1,31 @@
+<h6 class="jumbotron-heading display-5">       
+	
+</h6>
+
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1 class="display-5">Tareas del <%=t(date.strftime("%A"))%></h1>
+</div>
+
+<div class="table-responsive">
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Asignatura</th>
+			<th scope="col">Paginas</th>
+			<th scope="col">Ejercicios</th>
+			<th scope="col">Nota</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		<%trabajos.each do |t|%>
+		<tr>
+			<th scope="row"><img class="" src="/images/<%=Asignatura.find(t.asignatura).image%>" width="50px"> <%= Asignatura.find(t.asignatura).name%></th>
+			<td colspan="1"><%= t.titulo%></td>
+			<td><%= t.descripcion%></td>
+			<td><%= t.notas%></td>
+		</tr>
+		<%end%>
+	</tbody>
+</table>
+</div>

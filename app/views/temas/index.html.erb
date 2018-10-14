@@ -1,0 +1,31 @@
+
+<%= render partial: 'actividads/partials/menuAdmin' %>
+
+<section class="jumbotron text-center">
+        <div class="container">
+        	<h1 class="jumbotron-heading display-1">
+        	<img class="" src="/images/ClassDojo Accessories/hero-privacy.png" alt="Generic placeholder image" width="140" height="140">
+            Actividades
+          </h1>
+          <p class="lead text-muted">
+            Encuentra aquí todos los enlaces de las actividades o ejercicios complementarios para tu aprendizaje.
+		      </p>
+      </div>
+</section>
+
+<div class="row" >	
+	<%Actividad.all.each do |a|%>   
+	  <div class="col-lg-4">
+      <img class="" src="/images/actividades/<%=a.imagen%>" alt="Generic placeholder image" width="" height="">
+      
+      <span class="badge badge-pill badge-primary"><%=Tema.find(a.tema).titulo.upcase%></span>
+      <%asignatura =Asignatura.find(Tema.find(a.tema).asignatura)%>
+      <span class="badge badge-pill badge-warning"><%=asignatura.name.upcase%></span>
+      <span class="badge badge-pill badge-info"><%=Curso.find(asignatura.curso).name.upcase%></span>
+	    
+	    <h2><%= a.titulo %></h2>   
+         <p><%=a.descripcion%></p>
+	    <p><a class="btn btn-success" href="<%=a.link%>" role="button">Ver actividad &raquo;</a></p>
+	  </div><!-- /.col-lg-4 -->
+  <%end%>
+

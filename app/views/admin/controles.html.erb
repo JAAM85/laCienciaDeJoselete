@@ -1,0 +1,111 @@
+<div class="row" >
+	  	  
+	<div class="col-md-2">
+		<%= render partial: '/admin/partials/sidebar' %>
+	</div>
+
+<div class="col-md-10">
+
+<h1 class="jumbotron-heading display-4">       
+	Controles
+</h1>
+
+<ul class="nav">	
+	<li class="nav-item">			
+		<a class="nav-link active" href="<%=controls_new_path(5)%>">
+			<i class="fas fa-plus"></i> Crear nuevo control
+		</a>
+	</li>		
+</ul>
+
+<div class="table-responsive">
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Asignatura</th>
+			<th scope="col">Fecha</th>
+			<th scope="col">Descripcion</th>
+			<th scope="col"></th>
+			<th scope="col"></th>
+		</tr>
+	</thead>
+	<tbody>
+
+		<%@controles.each do |t|%>
+			<tr>
+				<th scope="row"><%= Asignatura.find(t.asignatura).name%></th>		
+				<td ><%=t.fecha.strftime("%a, %d-%m-%y")%></td>
+				<td><%= t.descripcion%></td>	
+				<td>
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-id="<%=t.id%>" data-target="#exampleModal">
+								Editar
+						</button>
+				</td>
+				<td>
+					<button onclick="destroyControl(this);" data-id="<%=t.id%>"  data-mensaje="<%=Asignatura.find(t.asignatura).name%>/<%=t.fecha.strftime("%d-%m-%y")%>" type="button" class="btn btn-outline-danger">Eliminar</button>
+				</td>
+			</tr>
+		<%end%>
+	</tbody>
+</table>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edición de control</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+					<div id="control" class="modal-body">
+						...
+					</div>      
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="mQuestion" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger">¡Atención!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p> ¿Desea borrar el contenido?</p>
+				<p id="mContenido"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <div id="btnDelete"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipient = button.data('id') // Extract info from data-* attributes
+
+  edit_control(recipient);
+})
+
+function destroyControl(event){
+	var button = $(event) // Button that triggered the modal
+  var recipient = button.data('id') // Extract info from data-* attributes
+	var mensaje = button.data('mensaje');
+
+	$('#mContenido').html(mensaje);
+	$('#btnDelete').html('<button type="button" onclick="delete_contenido('+ "'control'" + ', '+recipient+');" class="btn btn-danger">Borrar</button>');
+
+	$('#mQuestion').modal('show');
+}
+</script>
